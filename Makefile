@@ -1,5 +1,5 @@
-PKG = gitbub.com/wbuntu/gin-template
-IMG ?= docker.io/wbuntu/gin-template
+PKG = gitbub.com/wbuntu/free-ask-bot
+IMG ?= docker.io/wbuntu/free-ask-bot
 VERSION ?= $(shell date "+v%Y%m%d")
 PLATFORM ?= linux/amd64,linux/arm64
 COMMIT = $(shell git log --format="%h" -n 1|tr -d '\n')
@@ -15,13 +15,13 @@ swagger:
 build:
 	@echo "Compiling source"
 	@mkdir -p build
-	@go build -ldflags "-s -w -X $(PKG)/cmd.version=$(VERSION)-$(COMMIT)-$(TIMESTAMP)" -o build/gin-template main.go
+	@go build -ldflags "-s -w -X $(PKG)/cmd.version=$(VERSION)-$(COMMIT)-$(TIMESTAMP)" -o build/free-ask-bot main.go
 
 # 本地运行
 .PHONY: run
 run: build
-	@echo "Running gin-template"
-	@./build/gin-template
+	@echo "Running free-ask-bot"
+	@./build/free-ask-bot
 
 # 安装开发组件 
 .PHONY: dev-requirements

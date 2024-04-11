@@ -3,7 +3,7 @@ package storage
 import (
 	"context"
 
-	"gitbub.com/wbuntu/gin-template/internal/pkg/config"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/config"
 	"github.com/go-gormigrate/gormigrate/v2"
 	"github.com/pkg/errors"
 	"gorm.io/gorm"

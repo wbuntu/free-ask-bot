@@ -472,8 +472,8 @@ var SwaggerInfo = &swag.Spec{
 	Host:             "",
 	BasePath:         "/api/v1.0",
 	Schemes:          []string{},
-	Title:            "gin-template API",
-	Description:      "gin-template swagger server.",
+	Title:            "free-ask-bot API",
+	Description:      "free-ask-bot swagger server.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 }

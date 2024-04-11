@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: gin-template
+  name: free-ask-bot
   namespace: apps
 data:
   config.toml: |
@@ -26,7 +26,7 @@ data:
     [db]
     # db connection info
     type="sqlite"
-    dsn="/var/lib/gin-template/sqlite.db"
+    dsn="/var/lib/free-ask-bot/sqlite.db"
     min_idle_conns=100
     max_active_conns=200
     conn_lifetime="1h0m0s"

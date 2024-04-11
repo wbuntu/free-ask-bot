@@ -1,7 +1,7 @@
 package model
 
 import (
-	"gitbub.com/wbuntu/gin-template/internal/storage"
+	"gitbub.com/wbuntu/free-ask-bot/internal/storage"
 )
 
 type CreateClusterReq struct {

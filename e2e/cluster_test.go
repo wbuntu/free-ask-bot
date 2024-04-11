@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"time"
 
-	"gitbub.com/wbuntu/gin-template/e2e/cases"
-	"gitbub.com/wbuntu/gin-template/internal/model"
-	"gitbub.com/wbuntu/gin-template/internal/storage"
+	"gitbub.com/wbuntu/free-ask-bot/e2e/cases"
+	"gitbub.com/wbuntu/free-ask-bot/internal/model"
+	"gitbub.com/wbuntu/free-ask-bot/internal/storage"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 )

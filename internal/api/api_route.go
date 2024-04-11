@@ -3,9 +3,9 @@ package api
 import (
 	"net/http"
 
-	"gitbub.com/wbuntu/gin-template/internal/api/cluster"
-	"gitbub.com/wbuntu/gin-template/internal/api/tools"
-	"gitbub.com/wbuntu/gin-template/internal/model"
+	"gitbub.com/wbuntu/free-ask-bot/internal/api/cluster"
+	"gitbub.com/wbuntu/free-ask-bot/internal/api/tools"
+	"gitbub.com/wbuntu/free-ask-bot/internal/model"
 )
 
 var clusterRoute = []model.Route{

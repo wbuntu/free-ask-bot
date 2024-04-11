@@ -4,10 +4,10 @@ import (
 	"context"
 	"time"
 
-	"gitbub.com/wbuntu/gin-template/internal/pkg/config"
-	"gitbub.com/wbuntu/gin-template/internal/pkg/leaderelection"
-	"gitbub.com/wbuntu/gin-template/internal/pkg/log"
-	"gitbub.com/wbuntu/gin-template/internal/pkg/queue"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/config"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/leaderelection"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/log"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/queue"
 	"github.com/pkg/errors"
 	"k8s.io/client-go/rest"
 )

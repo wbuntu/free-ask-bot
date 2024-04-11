@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gin-template
+  name: free-ask-bot
   namespace: apps
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: gin-template
+      app: free-ask-bot
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -16,14 +16,14 @@ spec:
   template:
     metadata:
       labels:
-        app: gin-template
+        app: free-ask-bot
     spec:
       securityContext:
         runAsUser: 0
-      serviceAccountName: gin-template
+      serviceAccountName: free-ask-bot
       containers:
-        - name: gin-template
-          image: docker.io/wbuntu/gin-template:latest
+        - name: free-ask-bot
+          image: docker.io/wbuntu/free-ask-bot:latest
           imagePullPolicy: Always
           env:
             - name: POD_NAME
@@ -45,7 +45,7 @@ spec:
               memory: 300Mi
           volumeMounts:
             - name: config
-              mountPath: /etc/gin-template
+              mountPath: /etc/free-ask-bot
           readinessProbe:
             httpGet:
               path: /readyz
@@ -62,7 +62,7 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: gin-template
+            name: free-ask-bot
       nodeSelector:
         node-role.kubernetes.io/master: ""
       tolerations:
@@ -78,6 +78,6 @@ spec:
                     - key: app
                       operator: In
                       values:
-                        - gin-template
+                        - free-ask-bot
                 topologyKey: kubernetes.io/hostname
               weight: 1

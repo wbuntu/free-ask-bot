@@ -4,7 +4,7 @@ import (
 	"os"
 	"text/template"
 
-	"gitbub.com/wbuntu/gin-template/internal/pkg/config"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/config"
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 )
@@ -48,7 +48,7 @@ conn_idletime="{{ .KVDB.ConnIdletime }}"
 
 var configCmd = &cobra.Command{
 	Use:   "configfile",
-	Short: "Print ths gin-template configuration file",
+	Short: "Print ths free-ask-bot configuration file",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		t := template.Must(template.New("config").Parse(configTemplate))
 		err := t.Execute(os.Stdout, &config.C)

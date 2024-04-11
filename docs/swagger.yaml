@@ -222,8 +222,8 @@ definitions:
     type: object
 info:
   contact: {}
-  description: gin-template swagger server.
-  title: gin-template API
+  description: free-ask-bot swagger server.
+  title: free-ask-bot API
   version: "1.0"
 paths:
   /clusters:

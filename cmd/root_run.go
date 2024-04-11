@@ -9,12 +9,12 @@ import (
 	"os/signal"
 	"syscall"
 
-	"gitbub.com/wbuntu/gin-template/internal/api"
-	"gitbub.com/wbuntu/gin-template/internal/daemon"
-	"gitbub.com/wbuntu/gin-template/internal/pkg/config"
-	"gitbub.com/wbuntu/gin-template/internal/pkg/log"
-	"gitbub.com/wbuntu/gin-template/internal/pkg/utils"
-	"gitbub.com/wbuntu/gin-template/internal/storage"
+	"gitbub.com/wbuntu/free-ask-bot/internal/api"
+	"gitbub.com/wbuntu/free-ask-bot/internal/daemon"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/config"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/log"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/utils"
+	"gitbub.com/wbuntu/free-ask-bot/internal/storage"
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 )
@@ -58,7 +58,7 @@ func run(cmd *cobra.Command, args []string) error {
 	case s := <-sigChan:
 		logger.Info("signal:", s, " signal received: stopping immediately")
 	}
-	logger.Warn("gin-template stopped")
+	logger.Warn("free-ask-bot stopped")
 	return nil
 }
 
@@ -112,7 +112,7 @@ func (t *task) shutdown() {
 
 // printStartupLog 打印版本
 func printStartupLog(t *task) error {
-	t.logger.WithField("version", t.config.Version).Info("starting gin-template")
+	t.logger.WithField("version", t.config.Version).Info("starting free-ask-bot")
 	return nil
 }
 

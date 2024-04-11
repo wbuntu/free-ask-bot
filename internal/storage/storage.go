@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"gitbub.com/wbuntu/gin-template/internal/pkg/config"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/config"
 	"github.com/glebarez/sqlite"
 	"github.com/go-redis/redis/v8"
 	"github.com/pkg/errors"

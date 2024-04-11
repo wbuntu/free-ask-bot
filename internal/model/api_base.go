@@ -3,7 +3,7 @@ package model
 import (
 	"strings"
 
-	"gitbub.com/wbuntu/gin-template/internal/pkg/log"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/log"
 	"github.com/gin-gonic/gin"
 )
 

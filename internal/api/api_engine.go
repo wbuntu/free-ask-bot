@@ -12,10 +12,10 @@ import (
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 
-	"gitbub.com/wbuntu/gin-template/internal/api/middleware"
-	"gitbub.com/wbuntu/gin-template/internal/model"
-	"gitbub.com/wbuntu/gin-template/internal/pkg/config"
-	"gitbub.com/wbuntu/gin-template/internal/pkg/log"
+	"gitbub.com/wbuntu/free-ask-bot/internal/api/middleware"
+	"gitbub.com/wbuntu/free-ask-bot/internal/model"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/config"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/log"
 )
 
 func (s *Server) setupEngine(ctx context.Context, c *config.Config) error {

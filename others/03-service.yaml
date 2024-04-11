@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: gin-template
+  name: free-ask-bot
   namespace: apps
 spec:
   type: ClusterIP
   selector:
-    app: gin-template
+    app: free-ask-bot
   ports:
     - name: web
       port: 8080

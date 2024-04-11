@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"time"
 
-	"gitbub.com/wbuntu/gin-template/internal/pkg/config"
-	"gitbub.com/wbuntu/gin-template/internal/pkg/log"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/config"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/log"
 	"github.com/pkg/errors"
 	"golang.org/x/sync/errgroup"
 )

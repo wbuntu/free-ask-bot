@@ -1,4 +1,4 @@
-module gitbub.com/wbuntu/gin-template
+module gitbub.com/wbuntu/free-ask-bot
 
 go 1.20
 

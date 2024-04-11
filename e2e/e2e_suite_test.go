@@ -3,7 +3,7 @@ package e2e
 import (
 	"testing"
 
-	"gitbub.com/wbuntu/gin-template/internal/pkg/tools"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/tools"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 )

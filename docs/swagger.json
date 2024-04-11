@@ -7,8 +7,8 @@
     ],
     "swagger": "2.0",
     "info": {
-        "description": "gin-template swagger server.",
-        "title": "gin-template API",
+        "description": "free-ask-bot swagger server.",
+        "title": "free-ask-bot API",
         "contact": {},
         "version": "1.0"
     },

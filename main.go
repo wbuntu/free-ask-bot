@@ -4,8 +4,8 @@ Copyright © 2022 wbuntu
 package main
 
 import (
-	"gitbub.com/wbuntu/gin-template/cmd"
-	_ "gitbub.com/wbuntu/gin-template/docs"
+	"gitbub.com/wbuntu/free-ask-bot/cmd"
+	_ "gitbub.com/wbuntu/free-ask-bot/docs"
 	"go.uber.org/automaxprocs/maxprocs"
 )
 
@@ -14,9 +14,9 @@ func init() {
 	maxprocs.Set()
 }
 
-// @title       gin-template API
+// @title       free-ask-bot API
 // @version     1.0
-// @description gin-template swagger server.
+// @description free-ask-bot swagger server.
 // @BasePath    /api/v1.0
 // @Accept      json
 // @Produce     json

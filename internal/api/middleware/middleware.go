@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"time"
 
-	"gitbub.com/wbuntu/gin-template/internal/pkg/log"
-	"gitbub.com/wbuntu/gin-template/internal/pkg/utils"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/log"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/utils"
 	"github.com/gin-gonic/gin"
 )
 

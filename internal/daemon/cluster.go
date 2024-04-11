@@ -4,10 +4,10 @@ import (
 	"context"
 	"time"
 
-	"gitbub.com/wbuntu/gin-template/internal/pkg/log"
-	"gitbub.com/wbuntu/gin-template/internal/pkg/queue"
-	"gitbub.com/wbuntu/gin-template/internal/pkg/utils"
-	"gitbub.com/wbuntu/gin-template/internal/storage"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/log"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/queue"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/utils"
+	"gitbub.com/wbuntu/free-ask-bot/internal/storage"
 	"github.com/pkg/errors"
 )
 

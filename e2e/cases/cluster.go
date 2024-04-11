@@ -1,7 +1,7 @@
 package cases
 
 import (
-	"gitbub.com/wbuntu/gin-template/internal/model"
+	"gitbub.com/wbuntu/free-ask-bot/internal/model"
 )
 
 // StandardCreateClusterRequest 标准集群创建请求

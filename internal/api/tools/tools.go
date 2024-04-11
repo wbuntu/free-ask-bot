@@ -4,8 +4,8 @@ import (
 	"context"
 	"net"
 
-	"gitbub.com/wbuntu/gin-template/internal/model"
-	"gitbub.com/wbuntu/gin-template/internal/pkg/utils"
+	"gitbub.com/wbuntu/free-ask-bot/internal/model"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/utils"
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
 )

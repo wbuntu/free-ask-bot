@@ -3,7 +3,7 @@ package log
 import (
 	"context"
 
-	"gitbub.com/wbuntu/gin-template/internal/pkg/config"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/config"
 )
 
 // Setup configure log setting

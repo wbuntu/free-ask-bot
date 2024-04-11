@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"gitbub.com/wbuntu/gin-template/internal/model"
+	"gitbub.com/wbuntu/free-ask-bot/internal/model"
 	"github.com/pkg/errors"
 )
 

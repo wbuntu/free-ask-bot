@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"gitbub.com/wbuntu/gin-template/internal/pkg/utils"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/utils"
 )
 
 func TestQueue(t *testing.T) {
