@@ -1,0 +1,333 @@
+basePath: /api/v1.0
+consumes:
+- application/json
+definitions:
+  model.BaseResponse:
+    properties:
+      code:
+        description: 响应码
+        example: Success
+        type: string
+      message:
+        description: 响应消息
+        example: 调用成功
+        type: string
+      requestId:
+        description: 请求ID
+        example: 6893b1e9-da8f-4c6c-a161-eba4b81ea5b3
+        type: string
+    type: object
+  model.CheckCIDRReq:
+    properties:
+      ipv6:
+        description: ipv6开关
+        example: false
+        type: boolean
+      podCidr:
+        description: 容器组网段
+        example: 10.244.0.0/16
+        type: string
+      podCidrIpv6:
+        description: ipv6容器组网段, ipv6为true时有效
+        example: fc00::/48
+        type: string
+      serviceCidr:
+        description: 服务网段
+        example: 10.96.0.0/16
+        type: string
+      serviceCidrIpv6:
+        description: ipv6服务网
+        example: fd00::/108
+        type: string
+    required:
+    - podCidr
+    - serviceCidr
+    type: object
+  model.CheckCIDRResp:
+    properties:
+      code:
+        description: 响应码
+        example: Success
+        type: string
+      message:
+        description: 响应消息
+        example: 调用成功
+        type: string
+      requestId:
+        description: 请求ID
+        example: 6893b1e9-da8f-4c6c-a161-eba4b81ea5b3
+        type: string
+    type: object
+  model.ClusterDetail:
+    properties:
+      createTime:
+        description: 创建时间
+        example: "2006-01-02 15:04:05"
+        type: string
+      description:
+        description: 描述
+        example: amazing-cluster-description
+        type: string
+      k8sType:
+        description: 类型：k8s、k3s
+        example: k8s
+        type: string
+      name:
+        description: 名称
+        example: imortal-cluster-name
+        type: string
+      resourceID:
+        description: 集群ID
+        example: cluster-sedqqz7ka
+        type: string
+      runtime:
+        description: 容器运行时
+        example: cri-o
+        type: string
+      status:
+        description: 集群状态
+        type: string
+      version:
+        description: 版本
+        example: 1.22.5
+        type: string
+    type: object
+  model.ClusterSummary:
+    properties:
+      createTime:
+        description: 创建时间
+        example: "2006-01-02 15:04:05"
+        type: string
+      description:
+        description: 描述
+        example: amazing-cluster-description
+        type: string
+      k8sType:
+        description: 类型：k8s、k3s
+        example: k8s
+        type: string
+      name:
+        description: 名称
+        example: imortal-cluster-name
+        type: string
+      resourceID:
+        description: 集群ID
+        example: cluster-sedqqz7ka
+        type: string
+      runtime:
+        description: 容器运行时
+        example: cri-o
+        type: string
+      status:
+        description: 集群状态
+        type: string
+      version:
+        description: 版本
+        example: 1.22.5
+        type: string
+    type: object
+  model.CreateClusterReq:
+    properties:
+      description:
+        description: 描述，支持 0~255 位字符
+        example: amazing-cluster-description
+        type: string
+      k8sType:
+        description: 类型：k8s、k3s
+        enum:
+        - k8s
+        - k3s
+        example: k8s
+        type: string
+      name:
+        description: 名称，支持 1～127 位字符，必须以字母或中文开头，可以包含字母、数字、下划线（_）、中划线（-）、点(.)
+        example: imortal-cluster-name
+        type: string
+      runtime:
+        description: 容器运行时
+        enum:
+        - cri-o
+        - containerd
+        example: cri-o
+        type: string
+      version:
+        description: 版本
+        example: 1.22.5
+        type: string
+    required:
+    - k8sType
+    - runtime
+    - version
+    type: object
+  model.CreateClusterResp:
+    properties:
+      code:
+        description: 响应码
+        example: Success
+        type: string
+      data:
+        description: 集群资源ID
+        example: cluster-sedqqz7kavbh
+        type: string
+      message:
+        description: 响应消息
+        example: 调用成功
+        type: string
+      requestId:
+        description: 请求ID
+        example: 6893b1e9-da8f-4c6c-a161-eba4b81ea5b3
+        type: string
+    type: object
+  model.GetClusterResp:
+    properties:
+      code:
+        description: 响应码
+        example: Success
+        type: string
+      data:
+        $ref: '#/definitions/model.ClusterDetail'
+        description: 集群详情
+      message:
+        description: 响应消息
+        example: 调用成功
+        type: string
+      requestId:
+        description: 请求ID
+        example: 6893b1e9-da8f-4c6c-a161-eba4b81ea5b3
+        type: string
+    type: object
+  model.ListClusterResp:
+    properties:
+      code:
+        description: 响应码
+        example: Success
+        type: string
+      data:
+        description: 集群概要列表
+        items:
+          $ref: '#/definitions/model.ClusterSummary'
+        type: array
+      message:
+        description: 响应消息
+        example: 调用成功
+        type: string
+      requestId:
+        description: 请求ID
+        example: 6893b1e9-da8f-4c6c-a161-eba4b81ea5b3
+        type: string
+      totalCount:
+        description: 集群总数
+        example: 100
+        type: integer
+    type: object
+info:
+  contact: {}
+  description: gin-template swagger server.
+  title: gin-template API
+  version: "1.0"
+paths:
+  /clusters:
+    get:
+      description: 分页获取集群列表
+      parameters:
+      - description: 分页号，默认为1
+        in: query
+        name: pageNo
+        required: true
+        type: integer
+        x-example: "1"
+      - description: 分页大小，默认为10
+        in: query
+        name: pageSize
+        required: true
+        type: integer
+        x-example: "10"
+      - description: 查询条件，默认为空
+        in: query
+        name: filterKey
+        type: string
+      - description: 查询值，默认为空
+        in: query
+        name: filterValue
+        type: string
+      responses:
+        "200":
+          description: 响应
+          schema:
+            $ref: '#/definitions/model.ListClusterResp'
+      summary: 集群列表
+      tags:
+      - Cluster
+    post:
+      description: 根据配置参数自动创建集群
+      parameters:
+      - description: 请求
+        in: body
+        name: CreateClusterReq
+        required: true
+        schema:
+          $ref: '#/definitions/model.CreateClusterReq'
+      responses:
+        "200":
+          description: 响应
+          schema:
+            $ref: '#/definitions/model.CreateClusterResp'
+      summary: 创建集群
+      tags:
+      - Cluster
+  /clusters/{clusterId}:
+    delete:
+      description: 根据集群ID自动删除集群
+      parameters:
+      - description: 集群资源ID
+        in: path
+        name: clusterId
+        required: true
+        type: string
+        x-example: cluster-sedqqz7ka
+      responses:
+        "200":
+          description: 响应
+          schema:
+            $ref: '#/definitions/model.BaseResponse'
+      summary: 删除集群
+      tags:
+      - Cluster
+    get:
+      description: 根据集群ID获取集群详细信息
+      parameters:
+      - description: 集群资源ID
+        in: path
+        name: clusterId
+        required: true
+        type: string
+        x-example: cluster-sedqqz7ka
+      responses:
+        "200":
+          description: 响应
+          schema:
+            $ref: '#/definitions/model.GetClusterResp'
+      summary: 集群详情
+      tags:
+      - Cluster
+  /tools/check-cidr:
+    post:
+      description: 检查集群CIDR是否存在网段冲突
+      parameters:
+      - description: 请求
+        in: body
+        name: CheckCIDRReq
+        required: true
+        schema:
+          $ref: '#/definitions/model.CheckCIDRReq'
+      responses:
+        "200":
+          description: 响应
+          schema:
+            $ref: '#/definitions/model.CheckCIDRResp'
+      summary: CIDR网段检查
+      tags:
+      - Tools
+produces:
+- application/json
+swagger: "2.0"

@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gin-template
+  namespace: apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gin-template
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 100%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: gin-template
+    spec:
+      securityContext:
+        runAsUser: 0
+      serviceAccountName: gin-template
+      containers:
+        - name: gin-template
+          image: docker.io/wbuntu/gin-template:latest
+          imagePullPolicy: Always
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NS
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: "2"
+              memory: 4Gi
+            requests:
+              cpu: 100m
+              memory: 300Mi
+          volumeMounts:
+            - name: config
+              mountPath: /etc/gin-template
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+              scheme: HTTP
+            periodSeconds: 15
+      volumes:
+        - name: config
+          configMap:
+            name: gin-template
+      nodeSelector:
+        node-role.kubernetes.io/master: ""
+      tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/master
+          operator: Exists
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - gin-template
+                topologyKey: kubernetes.io/hostname
+              weight: 1
