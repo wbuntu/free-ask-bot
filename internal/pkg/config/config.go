@@ -35,4 +35,7 @@ type Config struct {
 		ConnLifetime   time.Duration `mapstructure:"conn_lifetime"`
 		ConnIdletime   time.Duration `mapstructure:"conn_idletime"`
 	} `mapstructure:"kv_db"`
+	Bot struct {
+		Token string `mapstructure:"token"`
+	} `mapstructure:"bot"`
 }

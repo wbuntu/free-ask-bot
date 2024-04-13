@@ -19,9 +19,9 @@ build:
 
 # 本地运行
 .PHONY: run
-run: build
+run: 
 	@echo "Running free-ask-bot"
-	@./build/free-ask-bot
+	@cd build && go run ../main.go -c config.toml
 
 # 安装开发组件 
 .PHONY: dev-requirements

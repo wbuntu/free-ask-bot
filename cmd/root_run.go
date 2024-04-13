@@ -11,7 +11,9 @@ import (
 
 	"gitbub.com/wbuntu/free-ask-bot/internal/api"
 	"gitbub.com/wbuntu/free-ask-bot/internal/daemon"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/bot"
 	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/config"
+	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/llm"
 	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/log"
 	"gitbub.com/wbuntu/free-ask-bot/internal/pkg/utils"
 	"gitbub.com/wbuntu/free-ask-bot/internal/storage"
@@ -66,8 +68,8 @@ func run(cmd *cobra.Command, args []string) error {
 type task struct {
 	ctx           context.Context
 	config        *config.Config
-	serveFuncs    []func()
-	shutdownFuncs []func()
+	serveFuncs    []func() error
+	shutdownFuncs []func() error
 	logger        log.Logger
 }
 
@@ -92,7 +94,9 @@ func (t *task) setup() error {
 func (t *task) serve() error {
 	for i := range t.serveFuncs {
 		go func(i int) {
-			t.serveFuncs[i]()
+			if err := t.serveFuncs[i](); err != nil {
+				t.logger.Fatalf("executing serve func")
+			}
 		}(i)
 	}
 	t.logger.Info("start serving")
@@ -103,12 +107,12 @@ func (t *task) shutdown() {
 	t.logger.Warn("stop serving")
 	for i := range t.shutdownFuncs {
 		go func(i int) {
-			t.shutdownFuncs[i]()
+			if err := t.shutdownFuncs[i](); err != nil {
+				t.logger.Errorf("executing shutdown func")
+			}
 		}(i)
 	}
 }
-
-// taskFuncs
 
 // printStartupLog 打印版本
 func printStartupLog(t *task) error {
@@ -142,6 +146,18 @@ func migrateStorage(t *task) error {
 
 // setupDependency 初始化依赖项
 func setupDependency(t *task) error {
+	if err := llm.Setup(t.ctx, t.config); err != nil {
+		return errors.Wrap(err, "setup llm")
+	}
+	t.serveFuncs = append(t.serveFuncs, llm.Serve)
+	t.shutdownFuncs = append(t.shutdownFuncs, llm.Shutdown)
+	t.logger.Info("setup llm success")
+	if err := bot.Setup(t.ctx, t.config); err != nil {
+		return errors.Wrap(err, "setup bot")
+	}
+	t.serveFuncs = append(t.serveFuncs, bot.Serve)
+	t.shutdownFuncs = append(t.shutdownFuncs, bot.Shutdown)
+	t.logger.Info("setup bot success")
 	return nil
 }
 
@@ -154,12 +170,8 @@ func setupDaemon(t *task) error {
 	); err != nil {
 		return errors.Wrap(err, "setup daemon")
 	}
-	t.serveFuncs = append(t.serveFuncs, func() {
-		srv.Serve()
-	})
-	t.shutdownFuncs = append(t.shutdownFuncs, func() {
-		srv.Shutdown()
-	})
+	t.serveFuncs = append(t.serveFuncs, srv.Serve)
+	t.shutdownFuncs = append(t.shutdownFuncs, srv.Shutdown)
 	t.logger.Info("setup daemon server success")
 	return nil
 }
@@ -173,12 +185,8 @@ func setupAPI(t *task) error {
 	); err != nil {
 		return errors.Wrap(err, "setup api")
 	}
-	t.serveFuncs = append(t.serveFuncs, func() {
-		srv.Serve()
-	})
-	t.shutdownFuncs = append(t.shutdownFuncs, func() {
-		srv.Shutdown()
-	})
+	t.serveFuncs = append(t.serveFuncs, srv.Serve)
+	t.shutdownFuncs = append(t.shutdownFuncs, srv.Shutdown)
 	t.logger.Info("setup api server success")
 	return nil
 }

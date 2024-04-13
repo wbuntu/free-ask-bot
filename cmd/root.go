@@ -80,7 +80,8 @@ func initConfig() {
 	viper.SetDefault("kv_db.max_active_conns", 200)
 	viper.SetDefault("kv_db.conn_lifetime", "1h0m0s")
 	viper.SetDefault("kv_db.conn_idletime", "30m0s")
-
+	// bot
+	viper.SetDefault("bot.token", "")
 	// read in environment variables that match
 	viper.AutomaticEnv()
 

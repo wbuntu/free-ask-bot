@@ -44,6 +44,10 @@ min_idle_conns={{ .KVDB.MinIdleConns }}
 max_active_conns={{ .KVDB.MaxActiveConns }}
 conn_lifetime="{{ .KVDB.ConnLifetime }}"
 conn_idletime="{{ .KVDB.ConnIdletime }}"
+
+[bot]
+# telegram bot token
+token="{{ .Bot.Token }}"
 `
 
 var configCmd = &cobra.Command{

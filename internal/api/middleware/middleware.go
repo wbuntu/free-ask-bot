@@ -54,7 +54,7 @@ func RequestLogger() gin.HandlerFunc {
 			"from":      c.GetString(GinCtxFrom),
 		}))
 		c.Request = c.Request.WithContext(ctx)
-		// excute next
+		// execute next
 		c.Next()
 		// log request
 		statusCode := c.Writer.Status()
